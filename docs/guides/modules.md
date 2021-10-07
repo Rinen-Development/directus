@@ -32,7 +32,7 @@ export default {
 };
 ```
 
-- `id` — The unique key for this module. It is good practice to scope proprietary interfaces with an author prefix.
+- `id` — The unique key for this module. It is good practice to scope proprietary modules with an author prefix.
 - `name` — The human-readable name for this module.
 - `icon` — An icon name from the material icon set, or the extended list of Directus custom icons.
 - `routes` — Details the routes in your module. The routes are registered as nested routes with the module's `id`
@@ -118,47 +118,17 @@ instance of the `collectionsStore` using `store.useCollectionsStore()`, but that
 
 If you setup a route with a parameter, you can pass it in as a prop.
 
-## 2. Install Dependencies
-
-Set up a package.json file by running:
-
-```bash
-npm init -y
-```
-
-To be read by the Admin App, your custom module's Vue component must first be bundled into a single `index.js` file. We
-recommend bundling your code using the directus-extension CLI from our `@directus/extensions-sdk` package. The CLI
-internally uses a Rollup configuration tailored specifically to bundling Directus extensions. To install the Extension
-SDK, run this command:
-
-```bash
-npm i -D @directus/extensions-sdk
-```
-
-For the directus-extension CLI to recognize the extension type, the input path and the output path, add this field to
-the root of the `package.json` file:
-
-```json
-"directus:extension": {
-	"type": "module",
-	"path": "dist/index.js",
-	"source": "src/index.js",
-	"host": "^9.0.0-rc.92",
-	"hidden": false
-}
-```
-
 ## 3. Develop Your Custom Module
 
 The module itself is simply a Vue component, which provides an blank canvas for creating anything you need.
 
-## 4. Build and Deploy
-
-To build the module for use within Directus, run:
-
-```bash
-npx directus-extension build
-```
+## 4. Deploy
 
 Finally, move the output from your module's `dist` folder into your project's `/extensions/modules/my-custom-module`
 folder. Keep in mind that the extensions directory is configurable within your env file, and may be located elsewhere.
+
+::: warning Enable the Module
+
+Before a module appears in the module bar, it has to be enabled inside the project settings.
+
+:::
